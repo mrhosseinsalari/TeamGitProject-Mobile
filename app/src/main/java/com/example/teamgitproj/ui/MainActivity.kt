@@ -1,4 +1,4 @@
-package com.example.teamgitproj
+package com.example.teamgitproj.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -29,8 +29,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
-            text = "Hello $name!",
-            modifier = modifier
+        text = "Hello $name!",
+        modifier = modifier
     )
 }
 
