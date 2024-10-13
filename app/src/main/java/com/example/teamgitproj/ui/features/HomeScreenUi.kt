@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.DrawerValue
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
@@ -21,7 +22,9 @@ import dev.burnoo.cokoin.navigation.getNavController
 import dev.burnoo.cokoin.navigation.getNavViewModel
 import com.example.teamgitproj.ui.theme.cBackground
 import com.example.teamgitproj.ui.widgets.HomeContent
+import com.example.teamgitproj.ui.widgets.HomeDrawer
 import com.example.teamgitproj.ui.widgets.HomeToolbar
+import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -41,7 +44,9 @@ fun HomeScreenUi() {
         topBar = {
             HomeToolbar(
                 onDrawerClicked = {
-
+                    scope.launch {
+                        scaffoldState.drawerState.open()
+                    }
                 },
                 onSearchClicked = {
                 }
@@ -50,6 +55,15 @@ fun HomeScreenUi() {
         modifier = Modifier.fillMaxSize(),
         drawerGesturesEnabled = true,
         drawerContent = {
+            HomeDrawer {
+                scope.launch {
+                    if(scaffoldState.drawerState.currentValue == DrawerValue.Open) {
+                        scaffoldState.drawerState.close()
+                    } else {
+                        activity?.finish()
+                    }
+                }
+            }
         },
         drawerElevation = 2.dp,
         drawerBackgroundColor = cBackground
