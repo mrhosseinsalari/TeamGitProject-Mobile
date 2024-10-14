@@ -5,7 +5,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,7 +19,10 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Card
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -35,17 +41,20 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.teamgitproj.R
 import com.example.teamgitproj.data.model.Blog
 import com.example.teamgitproj.ui.theme.cBackground
+import com.example.teamgitproj.ui.theme.cPrimary
 import com.example.teamgitproj.ui.theme.cText1
 import com.example.teamgitproj.ui.theme.cText3
 import com.example.teamgitproj.ui.theme.radius3
 import com.example.teamgitproj.ui.theme.radius4
 import com.example.teamgitproj.util.SITE_BASE_URL
+import com.example.teamgitproj.util.getCurrentOrientation
 import com.example.teamgitproj.util.toParagraph
 
 @Composable
@@ -218,5 +227,122 @@ fun BlogContent(blog: Blog, onImageClicked: () -> Unit) {
             textAlign = TextAlign.Right,
             style = MaterialTheme.typography.body1,
         )
+    }
+}
+
+@Composable
+fun BlogInfoDialog(blog: Blog, onDismiss: () -> Unit) {
+    val context = LocalContext.current
+    val orientation = getCurrentOrientation()
+    Dialog(onDismissRequest = onDismiss) {
+        Card(
+            shape = RoundedCornerShape(size = 24.dp)
+        ) {
+            Column(modifier = if (orientation == 1) Modifier.verticalScroll(rememberScrollState()) else Modifier) {
+                val width = 288
+                val height = 216
+                val aspectRatio = width.toFloat() / height.toFloat()
+                AsyncImage(
+                    model = ImageRequest.Builder(context)
+                        .data(if (blog.image.startsWith("upload/")) SITE_BASE_URL + blog.image else blog.image)
+                        .crossfade(true)
+                        .build(),
+                    modifier = Modifier
+                        .aspectRatio(aspectRatio)
+                        .padding(top = 4.dp, start = 4.dp, end = 4.dp)
+                        .clip(RoundedCornerShape(size = 20.dp)),
+                    contentScale = ContentScale.Crop,
+                    contentDescription = null
+                )
+                Spacer(modifier = Modifier.height(26.dp))
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 16.dp),
+                    horizontalArrangement = Arrangement.Start,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        modifier = Modifier.size(20.dp),
+                        tint = cPrimary,
+                        painter = painterResource(id = R.drawable.dialog_title),
+                        contentDescription = null
+                    )
+                    Text(
+                        modifier = Modifier.padding(start = 12.dp),
+                        text = "عنوان مقاله",
+                        color = cPrimary,
+                        textAlign = TextAlign.Right,
+                        style = MaterialTheme.typography.overline,
+                    )
+                }
+                Text(
+                    modifier = Modifier.padding(start = 48.dp, top = 6.dp , end = 8.dp),
+                    text = blog.title,
+                    color = cText1,
+                    textAlign = TextAlign.Right,
+                    style = MaterialTheme.typography.body2,
+                )
+                Spacer(modifier = Modifier.height(26.dp))
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 16.dp),
+                    horizontalArrangement = Arrangement.Start,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        modifier = Modifier.size(20.dp),
+                        tint = cPrimary,
+                        painter = painterResource(id = R.drawable.dialog_category),
+                        contentDescription = null
+                    )
+                    Text(
+                        modifier = Modifier.padding(start = 12.dp),
+                        text = "دسته بندی",
+                        color = cPrimary,
+                        textAlign = TextAlign.Right,
+                        style = MaterialTheme.typography.overline,
+                    )
+                }
+                Text(
+                    modifier = Modifier.padding(start = 48.dp, top = 6.dp),
+                    text = blog.category,
+                    color = cText1,
+                    textAlign = TextAlign.Right,
+                    style = MaterialTheme.typography.body2,
+                )
+                Spacer(modifier = Modifier.height(26.dp))
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 16.dp),
+                    horizontalArrangement = Arrangement.Start,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        modifier = Modifier.size(20.dp),
+                        tint = cPrimary,
+                        painter = painterResource(id = R.drawable.dialog_tag),
+                        contentDescription = null
+                    )
+                    Text(
+                        modifier = Modifier.padding(start = 12.dp),
+                        text = "نویسنده",
+                        color = cPrimary,
+                        textAlign = TextAlign.Right,
+                        style = MaterialTheme.typography.overline,
+                    )
+                }
+                Text(
+                    modifier = Modifier.padding(start = 48.dp, top = 6.dp),
+                    text = blog.author,
+                    color = cText1,
+                    textAlign = TextAlign.Right,
+                    style = MaterialTheme.typography.body2,
+                )
+                Spacer(modifier = Modifier.height(26.dp))
+            }
+        }
     }
 }

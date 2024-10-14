@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import dev.burnoo.cokoin.navigation.getNavController
 import com.example.teamgitproj.data.model.Blog
 import com.example.teamgitproj.ui.widgets.BlogContent
+import com.example.teamgitproj.ui.widgets.BlogInfoDialog
 import com.example.teamgitproj.ui.widgets.BlogToolbar
 import com.example.teamgitproj.util.Cache
 import com.example.teamgitproj.util.KEY_BLOG
@@ -41,7 +42,9 @@ fun BlogScreenUi() {
             }
 
             if(showInfoDialog) {
-                // BlogInfoDialog()
+                BlogInfoDialog(blog) {
+                    showInfoDialog = false
+                }
             }
 
         }
