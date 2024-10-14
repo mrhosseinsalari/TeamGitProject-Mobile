@@ -19,7 +19,8 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dev.burnoo.cokoin.Koin
 import dev.burnoo.cokoin.navigation.KoinNavHost
 import com.example.teamgitproj.di.myModules
-import com.example.teamgitproj.ui.features.HomeScreenUi
+import com.example.teamgitproj.ui.features.BlogScreenUi
+import com.example.teamgitproj.ui.features.home.HomeScreenUi
 import com.example.teamgitproj.ui.theme.TeamGitProjTheme
 import com.example.teamgitproj.ui.theme.cBackground
 import com.example.teamgitproj.util.MyScreens
@@ -62,6 +63,10 @@ fun TeamGitApp() {
     ) {
         composable(MyScreens.HomeScreen.route) {
             HomeScreenUi()
+        }
+
+        composable(MyScreens.BlogScreen.route) {
+            BlogScreenUi()
         }
     }
 }

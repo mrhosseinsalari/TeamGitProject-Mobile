@@ -1,4 +1,4 @@
-package com.example.teamgitproj.ui.features
+package com.example.teamgitproj.ui.features.home
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

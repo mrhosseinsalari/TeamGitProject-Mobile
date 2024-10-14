@@ -51,6 +51,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.navigation.NavController
+import dev.burnoo.cokoin.navigation.getNavController
 import com.example.teamgitproj.R
 import com.example.teamgitproj.data.model.Blog
 import com.example.teamgitproj.ui.theme.cArrow
@@ -62,6 +64,7 @@ import com.example.teamgitproj.ui.theme.cText2
 import com.example.teamgitproj.ui.theme.cText3
 import com.example.teamgitproj.ui.theme.cText5
 import com.example.teamgitproj.util.FadeInOutWidget
+import com.example.teamgitproj.util.MyScreens
 import com.example.teamgitproj.util.NetworkChecker
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -90,6 +93,7 @@ fun SnackBar(title: String) {
 
 @Composable
 fun HomeContent(data: List<Blog>, onRequestRefresh: () -> Unit) {
+    val navigation = getNavController()
     val context = LocalContext.current
     if (!NetworkChecker(context).isInternetConnected)
         SnackBar(title = "لطفا از اتصال دستگاه خود به اینترنت مطمئن شوید")
@@ -134,7 +138,7 @@ fun HomeContent(data: List<Blog>, onRequestRefresh: () -> Unit) {
                 },
                 data = data
             ) {
-                // todo naviagte to blog screen (2)
+                navigation.navigate(MyScreens.BlogScreen.route)
             }
         }
     }
