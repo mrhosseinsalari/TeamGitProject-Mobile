@@ -183,7 +183,7 @@ fun HomeToolbar(
 @Composable
 fun DevelopersIds() {
     Column {
-        Developer(R.drawable.amir_mohammadi, "شازده کوچولو", "برنامه نویس اپ اندروید", "@dunijet")
+        Developer(R.drawable.amir_mohammadi, "امیر حسین محمدی", "برنامه نویس اپ اندروید", "@dunijet")
         Developer(R.drawable.omid_baharifar, "امید بهاری فر", "برنامه نویس پنل فرانت", "@weblax_ir")
         Developer(R.drawable.erfan_yousefi, "عرفان یوسفی", "برنامه نویس بک اند", "@erfanyousefi.ir")
         Developer(R.drawable.soroush_mosapoor, "سروش موسی\u200Cپور", "متخصص دِوآپس", "@codingcogs")
