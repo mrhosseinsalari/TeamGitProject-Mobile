@@ -63,7 +63,9 @@ import com.example.teamgitproj.ui.theme.cText1
 import com.example.teamgitproj.ui.theme.cText2
 import com.example.teamgitproj.ui.theme.cText3
 import com.example.teamgitproj.ui.theme.cText5
+import com.example.teamgitproj.util.Cache
 import com.example.teamgitproj.util.FadeInOutWidget
+import com.example.teamgitproj.util.KEY_BLOG
 import com.example.teamgitproj.util.MyScreens
 import com.example.teamgitproj.util.NetworkChecker
 import kotlinx.coroutines.delay
@@ -138,6 +140,7 @@ fun HomeContent(data: List<Blog>, onRequestRefresh: () -> Unit) {
                 },
                 data = data
             ) {
+                Cache.put(KEY_BLOG, it)
                 navigation.navigate(MyScreens.BlogScreen.route)
             }
         }
@@ -146,8 +149,8 @@ fun HomeContent(data: List<Blog>, onRequestRefresh: () -> Unit) {
 
 @Composable
 fun HomeToolbar(
-    onDrawerClicked :() -> Unit ,
-    onSearchClicked :() -> Unit
+    onDrawerClicked: () -> Unit ,
+    onSearchClicked: () -> Unit
 ) {
     ConstraintLayout(
         modifier = Modifier.run {
