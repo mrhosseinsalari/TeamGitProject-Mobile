@@ -8,6 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import dev.burnoo.cokoin.navigation.getNavController
+import com.example.teamgitproj.data.model.Blog
 import com.example.teamgitproj.ui.widgets.BlogToolbar
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
