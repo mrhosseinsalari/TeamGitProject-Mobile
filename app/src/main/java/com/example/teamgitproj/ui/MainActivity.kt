@@ -23,6 +23,7 @@ import com.example.teamgitproj.di.myModules
 import com.example.teamgitproj.ui.features.BlogScreenUi
 import com.example.teamgitproj.ui.features.LargeImageScreen
 import com.example.teamgitproj.ui.features.home.HomeScreenUi
+import com.example.teamgitproj.ui.features.search.SearchScreenUi
 import com.example.teamgitproj.ui.theme.TeamGitProjTheme
 import com.example.teamgitproj.ui.theme.cBackground
 import com.example.teamgitproj.util.MyScreens
@@ -74,6 +75,10 @@ fun TeamGitApp() {
 
         composable(MyScreens.LargeImageScreen.route) {
             LargeImageScreen()
+        }
+
+        composable(MyScreens.SearchBlogScreen.route) {
+            SearchScreenUi()
         }
     }
 }
