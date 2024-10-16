@@ -1,7 +1,14 @@
 package com.example.teamgitproj.util
 
+import android.content.Context
+import android.os.Build
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalConfiguration
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 fun String.toParagraph(size: Int): String {
     val stringBuilder = StringBuilder()
@@ -40,4 +47,19 @@ fun getCurrentOrientation(): Int {
     } else {
         0
     }
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun String.toReadableDateTime(): String {
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    val dateTime = LocalDateTime.parse(this, formatter)
+    val zoneId = ZoneId.systemDefault()
+    val instant = dateTime.atZone(zoneId).toInstant()
+    val readableDate = DateTimeFormatter.ofPattern("yyyy/M/d").format(dateTime)
+    val readableTime = DateTimeFormatter.ofPattern("H:mm").format(dateTime)
+    return "$readableTime ,$readableDate"
+}
+
+fun Context.showToast(str: String) {
+    Toast.makeText(this, str, Toast.LENGTH_SHORT).show()
 }

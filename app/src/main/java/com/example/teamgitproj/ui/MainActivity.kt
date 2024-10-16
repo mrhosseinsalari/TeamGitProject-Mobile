@@ -1,5 +1,6 @@
 package com.example.teamgitproj.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
@@ -20,6 +21,7 @@ import dev.burnoo.cokoin.Koin
 import dev.burnoo.cokoin.navigation.KoinNavHost
 import com.example.teamgitproj.di.myModules
 import com.example.teamgitproj.ui.features.BlogScreenUi
+import com.example.teamgitproj.ui.features.LargeImageScreen
 import com.example.teamgitproj.ui.features.home.HomeScreenUi
 import com.example.teamgitproj.ui.theme.TeamGitProjTheme
 import com.example.teamgitproj.ui.theme.cBackground
@@ -54,6 +56,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@SuppressLint("NewApi")
 @Composable
 fun TeamGitApp() {
     val navController = rememberNavController()
@@ -67,6 +70,10 @@ fun TeamGitApp() {
 
         composable(MyScreens.BlogScreen.route) {
             BlogScreenUi()
+        }
+
+        composable(MyScreens.LargeImageScreen.route) {
+            LargeImageScreen()
         }
     }
 }
