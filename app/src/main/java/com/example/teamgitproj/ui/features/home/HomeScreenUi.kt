@@ -23,6 +23,7 @@ import com.example.teamgitproj.ui.theme.cBackground
 import com.example.teamgitproj.ui.widgets.HomeContent
 import com.example.teamgitproj.ui.widgets.HomeDrawer
 import com.example.teamgitproj.ui.widgets.HomeToolbar
+import com.example.teamgitproj.util.MyScreens
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -48,6 +49,7 @@ fun HomeScreenUi() {
                     }
                 },
                 onSearchClicked = {
+                    navigation.navigate(MyScreens.SearchBlogScreen.route)
                 }
             )
         },
