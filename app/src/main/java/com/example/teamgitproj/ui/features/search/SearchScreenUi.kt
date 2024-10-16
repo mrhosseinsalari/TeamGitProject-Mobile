@@ -12,6 +12,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.example.teamgitproj.ui.widgets.SearchContent
 import dev.burnoo.cokoin.navigation.getNavController
 import dev.burnoo.cokoin.navigation.getNavViewModel
 import com.example.teamgitproj.util.NO_FILTER
@@ -41,7 +42,7 @@ fun SearchScreenUi() {
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.BottomCenter
         ) {
-            // SearchContent()
+             SearchContent(data)
 
             if (showFilterDialog) {
                 // SearchDialog()
