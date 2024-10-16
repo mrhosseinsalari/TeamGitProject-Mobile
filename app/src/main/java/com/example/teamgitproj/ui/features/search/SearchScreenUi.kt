@@ -13,6 +13,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.teamgitproj.ui.widgets.SearchContent
+import com.example.teamgitproj.ui.widgets.SearchDialog
 import com.example.teamgitproj.ui.widgets.SearchToolbar
 import dev.burnoo.cokoin.navigation.getNavController
 import dev.burnoo.cokoin.navigation.getNavViewModel
@@ -52,7 +53,16 @@ fun SearchScreenUi() {
              SearchContent(data)
 
             if (showFilterDialog) {
-                // SearchDialog()
+                SearchDialog(
+                    filtering = filtering ,
+                    categoryList = categoryList ,
+                    authorList = authorList ,
+                    onDismissClicked = { showFilterDialog = false } ,
+                    onSubmitClicked = {
+                        isFilterEnabled = !(it.authors.isEmpty() && it.categories.isEmpty())
+                        viewModel.changeFiltering(it)
+                    }
+                )
             }
         }
     }
