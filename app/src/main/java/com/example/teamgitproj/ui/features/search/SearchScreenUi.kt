@@ -13,6 +13,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.teamgitproj.ui.widgets.SearchContent
+import com.example.teamgitproj.ui.widgets.SearchToolbar
 import dev.burnoo.cokoin.navigation.getNavController
 import dev.burnoo.cokoin.navigation.getNavViewModel
 import com.example.teamgitproj.util.NO_FILTER
@@ -34,7 +35,13 @@ fun SearchScreenUi() {
 
     Scaffold(
         topBar = {
-            // SearchToolbar()
+            SearchToolbar(
+                edtValue = searchedQuery,
+                isFilteringEnabled = isFilterEnabled,
+                onEdtChanged = { viewModel.setSearchQuery(it) },
+                onFilterClicked = { showFilterDialog = true },
+                onBackPressed = { navigation.popBackStack() }
+            )
         },
         modifier = Modifier.fillMaxSize(),
     ) {
